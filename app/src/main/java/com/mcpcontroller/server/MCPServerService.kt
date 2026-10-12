@@ -304,6 +304,11 @@ class MCPServerService : Service() {
         }
 
         // ── OAUTH ──────────────────────
+        get("/.well-known/oauth-protected-resource") {
+            val base = call.request.host().let { "https://$it" }
+            call.respond(mapOf("resource" to "$base/mcp", "authorization_servers" to listOf(base)))
+        }
+
         get("/.well-known/oauth-authorization-server") {
             val base = call.request.host().let { "https://$it" }
             call.respond(mapOf("issuer" to base, "authorization_endpoint" to "$base/authorize", "token_endpoint" to "$base/token", "response_types_supported" to listOf("code")))
