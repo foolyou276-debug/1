@@ -1,0 +1,5 @@
+-keep class com.mcpcontroller.** { *; }
+-keep class io.ktor.** { *; }
+-keep class io.netty.** { *; }
+-dontwarn io.netty.**
+-dontwarn kotlin.**

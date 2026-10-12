@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1a1a2e"
+    android:padding="16dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+
+        <!-- Header -->
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="🤖 MCP Controller" android:textSize="28sp" android:textColor="#FFFFFF"
+            android:textStyle="bold" android:layout_marginTop="16dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="Claude AI Android Remote Control" android:textSize="14sp"
+            android:textColor="#888888" android:layout_marginBottom="20dp"/>
+
+        <!-- Server Status Card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#16213e" app:cardCornerRadius="12dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="SERVER STATUS" android:textColor="#4fc3f7"
+                    android:textStyle="bold" android:textSize="12sp"/>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical" android:layout_marginTop="8dp">
+                    <View android:id="@+id/statusDot" android:layout_width="12dp" android:layout_height="12dp"
+                        android:background="@drawable/status_dot_red" android:layout_marginEnd="8dp"/>
+                    <TextView android:id="@+id/tvStatus" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Server Stopped"
+                        android:textColor="#FFFFFF" android:textSize="16sp" android:textStyle="bold"/>
+                </LinearLayout>
+                <TextView android:id="@+id/tvServerUrl" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="URL: Not started"
+                    android:textColor="#AAAAAA" android:textSize="13sp" android:layout_marginTop="4dp"/>
+                <TextView android:id="@+id/tvPort" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="Port: 8080"
+                    android:textColor="#AAAAAA" android:textSize="13sp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Controls Card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#16213e" app:cardCornerRadius="12dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="CONTROLS" android:textColor="#4fc3f7"
+                    android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnStartServer" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="▶ START MCP SERVER"
+                    android:backgroundTint="#1565C0" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnStopServer" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="⏹ STOP SERVER"
+                    android:backgroundTint="#C62828" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnAccessibility" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="⚙ ENABLE ACCESSIBILITY SERVICE"
+                    android:backgroundTint="#E65100" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnScreenCapture" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="📷 GRANT SCREEN CAPTURE"
+                    android:backgroundTint="#2E7D32" android:textColor="#FFFFFF"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Ngrok Token Card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#16213e" app:cardCornerRadius="12dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="NGROK TUNNEL" android:textColor="#4fc3f7"
+                    android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="8dp"/>
+                <EditText android:id="@+id/etNgrokToken" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:hint="Ngrok Auth Token paste karo"
+                    android:inputType="textPassword" android:textColor="#FFFFFF"
+                    android:textColorHint="#666666" android:backgroundTint="#333333"
+                    android:padding="12dp" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnSaveToken" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="💾 SAVE TOKEN"
+                    android:backgroundTint="#6A1B9A" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+                <Button android:id="@+id/btnStartNgrok" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="🌐 START NGROK TUNNEL"
+                    android:backgroundTint="#00695C" android:textColor="#FFFFFF" android:layout_marginBottom="8dp"/>
+                <TextView android:id="@+id/tvNgrokUrl" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Tunnel: Not started"
+                    android:textColor="#4fc3f7" android:textSize="13sp"
+                    android:fontFamily="monospace"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Permissions Card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#16213e" app:cardCornerRadius="12dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="PERMISSIONS" android:textColor="#4fc3f7"
+                    android:textStyle="bold" android:textSize="12sp" android:layout_marginBottom="8dp"/>
+                <TextView android:id="@+id/tvPermAccessibility" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="❌ Accessibility Service"
+                    android:textColor="#F44336" android:textSize="14sp"/>
+                <TextView android:id="@+id/tvPermScreenCapture" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="❌ Screen Capture"
+                    android:textColor="#F44336" android:textSize="14sp"/>
+                <TextView android:id="@+id/tvPermStorage" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:text="❌ Storage"
+                    android:textColor="#F44336" android:textSize="14sp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Log Card -->
+        <androidx.cardview.widget.CardView android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginBottom="12dp"
+            app:cardBackgroundColor="#16213e" app:cardCornerRadius="12dp"
+            xmlns:app="http://schemas.android.com/apk/res-auto">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="16dp">
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="LOG" android:textColor="#4fc3f7"
+                        android:textStyle="bold" android:textSize="12sp"/>
+                    <Button android:id="@+id/btnClearLog" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:text="Clear"
+                        android:backgroundTint="#333333" android:textColor="#FFFFFF"
+                        android:textSize="11sp" android:paddingStart="12dp" android:paddingEnd="12dp"/>
+                </LinearLayout>
+                <TextView android:id="@+id/tvLog" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:text="Starting...\n"
+                    android:textColor="#00FF88" android:textSize="11sp"
+                    android:fontFamily="monospace" android:layout_marginTop="8dp"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</ScrollView>
