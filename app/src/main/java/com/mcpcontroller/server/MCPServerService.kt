@@ -319,6 +319,10 @@ class MCPServerService : Service() {
         }
 
         // ── MCP PROTOCOL ENDPOINT ────────────────────────────────────────────
+        get("/mcp") {
+            call.respond(mapOf("jsonrpc" to "2.0", "result" to mapOf("protocolVersion" to "2024-11-05", "serverInfo" to mapOf("name" to "android-mcp-controller"))))
+        }
+
         post("/mcp") {
             val body = call.receiveText()
             val request = gson.fromJson(body, Map::class.java)
