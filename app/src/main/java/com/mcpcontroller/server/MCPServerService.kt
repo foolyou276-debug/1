@@ -311,7 +311,7 @@ class MCPServerService : Service() {
 
         get("/.well-known/oauth-authorization-server") {
             val base = call.request.host().let { "https://$it" }
-            call.respond(mapOf("issuer" to base, "authorization_endpoint" to "$base/authorize", "token_endpoint" to "$base/token", "response_types_supported" to listOf("code")))
+            call.respond(mapOf("issuer" to base, "authorization_endpoint" to "$base/authorize", "token_endpoint" to "$base/token", "response_types_supported" to listOf("code"), "grant_types_supported" to listOf("authorization_code"), "registration_endpoint" to "$base/register"))
         }
         get("/authorize") {
             val redirectUri = call.request.queryParameters["redirect_uri"] ?: ""
@@ -319,6 +319,19 @@ class MCPServerService : Service() {
             val codeChallenge = call.request.queryParameters["code_challenge"] ?: ""
             call.respondRedirect("$redirectUri?code=mcp_code_${codeChallenge.take(8)}&state=$state")
         }
+        post("/register") {
+            val body = call.receiveText()
+            val base = call.request.host().let { "https://$it" }
+            call.respond(HttpStatusCode.Created, mapOf(
+                "client_id" to "android-mcp-client",
+                "client_secret" to "android-mcp-secret",
+                "redirect_uris" to listOf("https://claude.ai/api/mcp/auth_callback", "https://claude.com/api/mcp/auth_callback"),
+                "grant_types" to listOf("authorization_code"),
+                "response_types" to listOf("code"),
+                "token_endpoint_auth_method" to "none"
+            ))
+        }
+
         post("/token") {
             call.respond(mapOf("access_token" to "mcp_token", "token_type" to "Bearer", "expires_in" to 86400))
         }
