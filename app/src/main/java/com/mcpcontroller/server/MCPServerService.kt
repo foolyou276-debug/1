@@ -376,6 +376,14 @@ class MCPServerService : Service() {
                     call.respond(mcpResponse(id, result))
                 }
 
+                "server/discover" -> {
+                    call.respond(mcpResponse(id, mapOf(
+                        "protocolVersion" to "2024-11-05",
+                        "capabilities" to mapOf("tools" to mapOf("listChanged" to false)),
+                        "serverInfo" to mapOf("name" to "android-mcp-controller", "version" to "1.0.0")
+                    )))
+                }
+
                 "notifications/initialized" -> {
                     call.respond(HttpStatusCode.Accepted, "")
                 }
