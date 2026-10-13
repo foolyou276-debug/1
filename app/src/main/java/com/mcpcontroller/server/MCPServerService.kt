@@ -364,7 +364,7 @@ class MCPServerService : Service() {
                 }
 
                 "notifications/initialized" -> {
-                    call.respond(mapOf("jsonrpc" to "2.0"))
+                    call.respond(HttpStatusCode.Accepted, "")
                 }
 
                 else -> {
